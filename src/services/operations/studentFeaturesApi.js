@@ -64,7 +64,7 @@ if(!orderResponse.data.success){
 //option
 //order id generated
  console.log("order response",orderResponse );
- console.log("razorpay key",process.env.RAZORPAY_KEY)
+
 const options={
     key:"rzp_test_kXISdNLX54psIM",
     currency :orderResponse.data.message.currency,
