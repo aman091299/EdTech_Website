@@ -35,6 +35,7 @@ async function sendVerificationEmail(email,otp){
 }
 
 OTPSchema.pre("save",async function(next){
+  console.log("inside otp verification pre save function")
   await sendVerificationEmail(this.email,this.otp);
   next();
 })

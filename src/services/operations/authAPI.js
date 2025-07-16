@@ -35,7 +35,7 @@ export function sendOtp(email, navigate) {
     } 
     catch (error) {
       console.log("SENDOTP API ERROR............", error)
-      toast.error("Could Nor Send OTP")
+      toast.error("Could Not Send OTP")
     }
 
     dispatch(setLoading(false))
@@ -91,11 +91,12 @@ export function login(email, password, navigate) {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
+      console.log("inside login api1")
       const response = await apiConnector("POST", LOGIN_API, {
         email,
         password,
       })
-
+       console.log("inside login api222")
       console.log("LOGIN API RESPONSE............", response)
 
       if (!response.data.success) {
@@ -120,7 +121,7 @@ export function login(email, password, navigate) {
       navigate("/")
     } catch (error) {
       console.log("LOGIN API ERROR............", error)
-      toast.error("Login Failed")
+      toast.error(error?.response?.data?.message || "Login Failed")
     }
     dispatch(setLoading(false))
     toast.dismiss(toastId)

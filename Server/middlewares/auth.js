@@ -41,7 +41,7 @@ exports.auth=async (req,res,next)=>{
 //isStudent
 exports.isStudent=async(req,res,next)=>{
     try {
-        if(req.user.role != 'Student'){
+        if(req.user.role !== 'Student'){
             
         return res.status(401).json({
             success:false,

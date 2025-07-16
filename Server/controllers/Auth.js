@@ -6,7 +6,6 @@ const otpGenerator=require("otp-generator");
 const bcrypt=require("bcrypt");
 const Profile=require("../models/Profile");
 const jwt=require("jsonwebtoken");
-const  cookie = require('cookie');
 require("dotenv").config();
 
 
@@ -109,7 +108,7 @@ exports.signup=async (req,res)=>{
         })
   }
   //2 password match 
-  if(password != confirmPassword){
+  if(password !== confirmPassword){
          return res.status((400).json({
          success:false,
          message:"Password and ConfirmPassword value does not match ,please try again"
@@ -120,7 +119,7 @@ exports.signup=async (req,res)=>{
                 console.log("yha ye function return kya krega ye dekhna hai",recentOtp);
       
              //validate OTP
-            if(recentOtp.length == 0){
+            if(recentOtp.length === 0){
                 //otp not found
                 return res.status(400).json({
                     success:false,
@@ -128,7 +127,7 @@ exports.signup=async (req,res)=>{
                 })
             }
            
-            else if(otp != recentOtp[0].otp){
+            else if(otp !== recentOtp[0].otp){
                       //invalid otp
                       return res.status(400).json({
                         success:false,
@@ -199,7 +198,7 @@ exports.login=async (req,res)=>{
         .populate("courses");
         //user not exist
         if(!user){
-             return res.status(401).json({
+             return res.status(400).json({
                 success:false,
                 message:'please signup',
               }) 
